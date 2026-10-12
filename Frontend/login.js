@@ -40,3 +40,23 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
         messageBox.innerText = "Connection error with server.";
     }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const signinBtn = document.querySelector(".btn-signin");
+    if (!signinBtn) return;
+
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (isLoggedIn) {
+        signinBtn.textContent = "Logout";
+        signinBtn.href = "#";
+        signinBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            localStorage.removeItem("isLoggedIn");
+            window.location.href = "index.html";
+        });
+    } else {
+        signinBtn.textContent = "Sign in";
+        signinBtn.href = "login.html";
+    }
+});
