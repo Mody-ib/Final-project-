@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+sqlalchemy>=2.0
+pymysql
+cryptography
+pydantic>=2
+python-dotenv
+torch
+transformers
+accelerate
