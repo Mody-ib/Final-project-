@@ -21,6 +21,9 @@ document.getElementById("register-form").addEventListener("submit", async (e) =>
         const data = await response.json();
 
         if (response.ok) {
+            if (data.user_id) {
+                localStorage.setItem("userId", data.user_id);
+            }
             messageBox.style.color = "var(--primary-emerald)";
             messageBox.innerText = "Registration successful! Redirecting to login...";
             setTimeout(() => {

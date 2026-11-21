@@ -27,6 +27,12 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
             if (data.token) {
                 localStorage.setItem("authToken", data.token);
             }
+            if (data.user_id) {
+                localStorage.setItem("userId", data.user_id);
+            }
+            if (data.name) {
+                localStorage.setItem("userName", data.name);
+            }
             setTimeout(() => {
                 window.location.href = "index.html";
             }, 1000);

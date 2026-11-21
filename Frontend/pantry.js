@@ -1,5 +1,5 @@
 const API_URL = "http://127.0.0.1:8000/api";
-const USER_ID = 1;
+const USER_ID = localStorage.getItem("userId") || 1;
 
 document.addEventListener("DOMContentLoaded", fetchPantryItems);
 
@@ -52,6 +52,9 @@ document.getElementById("pantry-form").addEventListener("submit", async (e) => {
         if (response.ok) {
             document.getElementById("pantry-form").reset();
             fetchPantryItems();
+        } else {
+            const err = await response.json();
+            alert(err.detail || "Error adding item. Valid ingredient IDs are 1 to 6.");
         }
     } catch (error) {
         console.error("Error adding pantry item:", error);

@@ -1,0 +1,21 @@
+# Environment files (contains API keys and secrets)
+.env
+Backend/.env
+*.env
+!.env.example
+!Backend/.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+Backend/venv/
+.venv/
+env/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store

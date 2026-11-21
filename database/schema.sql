@@ -80,6 +80,32 @@ CREATE TABLE IF NOT EXISTS grocery_list_items (
 -- ---------- Starter data (optional) ----------
 INSERT INTO aisles (name) VALUES ('Produce'), ('Dairy'), ('Meat & Fish'), ('Pantry'), ('Bakery');
 
-INSERT INTO ingredients (name, unit, aisle_id) VALUES
-  ('Chicken breast', 'g', 3), ('Rice', 'g', 4), ('Tomato', 'pcs', 1),
-  ('Onion', 'pcs', 1), ('Olive oil', 'ml', 4), ('Eggs', 'pcs', 2);
+INSERT INTO ingredients (ingredient_id, name, unit, aisle_id) VALUES
+  (1, 'Chicken breast', 'g', 3),
+  (2, 'Rice', 'g', 4),
+  (3, 'Tomato', 'pcs', 1),
+  (4, 'Onion', 'pcs', 1),
+  (5, 'Olive oil', 'ml', 4),
+  (6, 'Eggs', 'pcs', 2);
+
+-- Demo user (email: demo@example.com / password: password123)
+INSERT INTO users (user_id, name, email, password_hash) VALUES
+  (1, 'Demo User', 'demo@example.com', 'WGqbyGKjtz0UwlKeHZtwhfu3Rnfs+6qaP7q/5S5iqRMoOk5a3CwQMMu3ID/SdI8B');
+
+-- Demo recipe
+INSERT INTO recipes (recipe_id, user_id, name, instructions, servings, prep_time) VALUES
+  (1, 1, 'Chicken & Rice Bowl', '1. Season chicken.\n2. Sauté chicken with olive oil.\n3. Serve with cooked rice.', 2, 25);
+
+INSERT INTO recipe_ingredients (recipe_ingredient_id, recipe_id, ingredient_id, amount, unit, notes) VALUES
+  (1, 1, 1, 500.00, 'g', 'Chicken breast'),
+  (2, 1, 2, 300.00, 'g', 'Rice'),
+  (3, 1, 5, 20.00, 'ml', 'Olive oil');
+
+-- Demo pantry stock (has 200g of chicken)
+INSERT INTO pantry_items (pantry_id, user_id, ingredient_id, amount, unit) VALUES
+  (1, 1, 1, 200.00, 'g');
+
+-- Demo planned meal for today
+INSERT INTO meal_plan_entries (entry_id, user_id, recipe_id, planned_date, meal_slot) VALUES
+  (1, 1, 1, CURRENT_DATE(), 'dinner');
+

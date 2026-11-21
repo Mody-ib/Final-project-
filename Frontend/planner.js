@@ -36,25 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify(formData)
                 });
 
-                if (!response.ok) {
-                    throw new Error('Failed to generate diet plan');
-                }
-
                 const data = await response.json();
 
-                if (data.status === 'success' || data.diet_plan) {
+                if (response.ok && (data.status === 'success' || data.diet_plan)) {
                     if (dietResult) {
                         dietResult.innerText = data.diet_plan || data.message;
                     }
                 } else {
                     if (dietResult) {
-                        dietResult.innerText = "Error: Could not generate plan. Please check your input.";
+                        dietResult.innerText = data.detail || "Error: Could not generate plan. Please check your input.";
                     }
                 }
             } catch (error) {
                 console.error('Error generating diet plan:', error);
                 if (dietResult) {
-                    dietResult.innerText = "Something went wrong. Please check if the server is running.";
+                    dietResult.innerText = "Connection error. Please make sure the backend server is running.";
                 }
             }
         });
